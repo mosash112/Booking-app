@@ -75,11 +75,8 @@ router.put("/:id", verifyToken, upload.array('imageFiles'), async (req: Request,
         if (!hotel) {
             return res.status(404).json({ message: 'hotel not found' })
         }
-        console.log('error not here');
         const files = req.files as Express.Multer.File[]
-        console.log('error before');
         const updatedImagesUrls = await uploadImages(files)
-        console.log('error after');
 
         hotel.imageUrls = [...updatedImagesUrls, ...(updatedHotel.imageUrls || [])]
         await hotel.save()
@@ -92,9 +89,12 @@ router.put("/:id", verifyToken, upload.array('imageFiles'), async (req: Request,
 
 async function uploadImages(imageFiles: Express.Multer.File[]) {
     const uploadPromises = imageFiles.map(async (image) => {
+        console.log('error not here');
         const b64 = Buffer.from(image.buffer).toString('base64')
+        console.log('error before');
         let dataURI = 'data:' + image.mimetype + ';base64,' + b64
         const res = await cloudinary.uploader.upload(dataURI)
+        console.log('error after');
         return res.secure_url
     })
 
