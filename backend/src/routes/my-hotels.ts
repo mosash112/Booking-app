@@ -82,7 +82,7 @@ router.put("/:id", verifyToken, upload.array('imageFiles'), async (req: Request,
         await hotel.save()
         res.status(201).json(hotel)
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).json({ message: 'Error updating hotel' })
     }
 })
