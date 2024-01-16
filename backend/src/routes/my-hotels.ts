@@ -75,9 +75,11 @@ router.put("/:id", verifyToken, upload.array('imageFiles'), async (req: Request,
         if (!hotel) {
             return res.status(404).json({ message: 'hotel not found' })
         }
-
+        console.log('error not here');
         const files = req.files as Express.Multer.File[]
+        console.log('error before');
         const updatedImagesUrls = await uploadImages(files)
+        console.log('error after');
 
         hotel.imageUrls = [...updatedImagesUrls, ...(updatedHotel.imageUrls || [])]
         await hotel.save()
