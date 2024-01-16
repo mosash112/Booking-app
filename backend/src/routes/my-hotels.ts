@@ -82,25 +82,15 @@ router.put("/:id", verifyToken, upload.array('imageFiles'), async (req: Request,
         await hotel.save()
         res.status(201).json(hotel)
     } catch (error) {
-        // console.log(error);
         res.status(500).json({ message: 'Error updating hotel' })
     }
 })
 
 async function uploadImages(imageFiles: Express.Multer.File[]) {
     const uploadPromises = imageFiles.map(async (image) => {
-        // console.log('error not here');
         const b64 = Buffer.from(image.buffer).toString('base64')
-        // console.log('error before');
         let dataURI = 'data:' + image.mimetype + ';base64,' + b64
-        const res = await cloudinary.uploader.upload(dataURI, {}, (error, result) => {
-            if (error) {
-                console.error(error);
-            } else {
-                console.log(result);
-            }
-        })
-        // console.log('error after');
+        const res = await cloudinary.uploader.upload(dataURI)
         return res.secure_url
     })
 
