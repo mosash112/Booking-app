@@ -39,6 +39,14 @@ app.get('*', (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'))
 })
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`server running on localhost:${port}`)
 })
+
+process.on('SIGINT', () => {
+    console.log('Received SIGINT. Closing server...');
+    server.close(() => {
+        console.log('Server closed');
+        process.exit(0);
+    });
+});
