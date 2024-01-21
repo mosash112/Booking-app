@@ -29,8 +29,8 @@ const SearchResultsCard = ({ hotel }: Props) => {
                 </div>
                 <div className="grid grid-cols-2 items-end whitespace-nowrap">
                     <div className="flex gap-1 items-center">
-                        {hotel.facilities.slice(0, 3).map((facility) => (
-                            <span className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap">{facility}</span>
+                        {hotel.facilities.slice(0, 3).map((facility, index) => (
+                            <span className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap" key={index}>{facility}</span>
                         ))}
                         <span className="text-sm">{hotel.facilities.length > 3 && `+${hotel.facilities.length - 3} more`}</span>
                     </div>
