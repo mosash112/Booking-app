@@ -11,7 +11,7 @@ const SearchBar = () => {
     const [checkIn, setCheckIn] = useState<Date>(search.checkIn)
     const [checkOut, setCheckOut] = useState<Date>(search.checkOut)
     const [adultCount, setAdultCount] = useState<number>(search.adultCount)
-    const [childCound, setChildCound] = useState<number>(search.childCound)
+    const [childCount, setChildCount] = useState<number>(search.childCount)
     const navigate = useNavigate()
     const [clear, setClear] = useState(false)
     const minDate = new Date()
@@ -21,14 +21,14 @@ const SearchBar = () => {
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
         if (!clear) {
-            search.saveSearchValues(destination, checkIn, checkOut, adultCount, childCound)
+            search.saveSearchValues(destination, checkIn, checkOut, adultCount, childCount)
             navigate("/search")
         } else {
             setDestination('')
             setCheckIn(new Date())
             setCheckOut(new Date())
             setAdultCount(1)
-            setChildCound(0)
+            setChildCount(0)
         }
     }
 
@@ -60,8 +60,8 @@ const SearchBar = () => {
                         className="w-full p-1 focus:outline-none font-bold"
                         min={0}
                         max={20}
-                        value={childCound}
-                        onChange={(event) => setChildCound(parseInt(event.target.value))}
+                        value={childCount}
+                        onChange={(event) => setChildCount(parseInt(event.target.value))}
                     />
                 </label>
             </div>
@@ -86,7 +86,7 @@ const SearchBar = () => {
                     endDate={checkOut}
                     minDate={minDate}
                     maxDate={maxDate}
-                    placeholderText="Check-in Date"
+                    placeholderText="Check-out Date"
                     className="min-w-full bg-white p-2 focus:outline-none"
                     wrapperClassName="min-w-full"
                 />

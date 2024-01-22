@@ -26,7 +26,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
             checkIn: search.checkIn,
             checkOut: search.checkOut,
             adultCount: search.adultCount,
-            childCount: search.childCound
+            childCount: search.childCount
         }
     })
     const checkIn = watch('checkIn')

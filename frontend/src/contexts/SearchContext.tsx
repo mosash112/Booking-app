@@ -5,14 +5,14 @@ type SearchContext = {
     checkIn: Date
     checkOut: Date
     adultCount: number
-    childCound: number
+    childCount: number
     hotelId: string
     saveSearchValues: (
         destination: string,
         checkIn: Date,
         checkOut: Date,
         adultCount: number,
-        childCound: number
+        childCount: number
     ) => void
 }
 
@@ -35,8 +35,8 @@ export const SearchContextProvider = ({ children }: SearchContextProviderProps) 
     const [adultCount, setAdultCount] = useState<number>(() =>
         parseInt(sessionStorage.getItem('adultCount') || '1')
     )
-    const [childCound, setChildCound] = useState<number>(() =>
-        parseInt(sessionStorage.getItem('childCound') || '0')
+    const [childCount, setChildCount] = useState<number>(() =>
+        parseInt(sessionStorage.getItem('childCount') || '0')
     )
     const [hotelId, setHotelId] = useState<string>(() =>
         sessionStorage.getItem('hotelId') || ''
@@ -47,14 +47,14 @@ export const SearchContextProvider = ({ children }: SearchContextProviderProps) 
         checkIn: Date,
         checkOut: Date,
         adultCount: number,
-        childCound: number,
+        childCount: number,
         hotelId?: string
     ) => {
         setDestination(destination)
         setCheckIn(checkIn)
         setCheckOut(checkOut)
         setAdultCount(adultCount)
-        setChildCound(childCound)
+        setChildCount(childCount)
         if (hotelId) {
             setHotelId(hotelId)
         }
@@ -63,7 +63,7 @@ export const SearchContextProvider = ({ children }: SearchContextProviderProps) 
         sessionStorage.setItem('checkIn', checkIn.toISOString())
         sessionStorage.setItem('checkOut', checkOut.toISOString())
         sessionStorage.setItem('adultCount', adultCount.toString())
-        sessionStorage.setItem('childCound', childCound.toString())
+        sessionStorage.setItem('childCount', childCount.toString())
         if (hotelId) {
             sessionStorage.setItem('hotelId', hotelId)
         }
@@ -75,7 +75,7 @@ export const SearchContextProvider = ({ children }: SearchContextProviderProps) 
             checkIn,
             checkOut,
             adultCount,
-            childCound,
+            childCount,
             hotelId,
             saveSearchValues
         }}>

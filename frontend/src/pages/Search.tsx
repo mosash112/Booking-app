@@ -22,7 +22,7 @@ const Search = () => {
         checkIn: search.checkIn.toISOString(),
         checkOut: search.checkOut.toISOString(),
         adultCount: search.adultCount.toString(),
-        childCound: search.childCound.toString(),
+        childCount: search.childCount.toString(),
         page: page.toString(),
         stars: selectedStars,
         types: selectedHotelTypes,
